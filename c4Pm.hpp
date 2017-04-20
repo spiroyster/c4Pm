@@ -8,12 +8,11 @@
 namespace c4Pm
 {
 
+enum BPMType { P1, P2, P3, P4, P5, P6 };
+
 class Image
 {
 public:
-
-    enum BPMType { P1, P2, P3, P4, P5, P6 };
-
     static const unsigned int GREYSCALE = 2;
     static const unsigned int RGB = 3;
     static const unsigned int RGBA = 4;
@@ -31,32 +30,45 @@ public:
     {
         for ( unsigned int n = 0; n < bits_.size(); ++n)
             bits_[n] = *(bits+n);
-    }
+    } 
 
     // Create an image from the file
     Image(const std::string& filename)
         :   width_(0), height_(0), channels_(RGB)
     {
+        // Determin the Type by the file extension.
+
+
+        // Read the header
+
                                   
     }
 
     void Write(const BPMType& bpmType, const std::string& filename)
     {
+        std::ofstream file(filename.c_str());
+
         switch (bpmType)
         {
-        case BPMType::P1:
-            {
-
-            }
+        case P1:
+            file << "P1\n" << width_ << " " << height_ << "" 
         }
+
+        
+        
+        
+
+
+
+
     }
 
 private:
+
     unsigned int width_;
     unsigned int height_;
     unsigned int channels_;
     BPMType type_;
-
     std::vector<unsigned char> bits_;
 };
 
